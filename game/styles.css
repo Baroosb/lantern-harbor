@@ -1,0 +1,338 @@
+/* Lantern Harbor — page styling.
+   Palette: deep harbor ink, parchment cream, lantern amber, coral, teal.
+   The two pictures sit in cream frames like prints pinned in a harbor
+   office; the chrome around them stays dark so the scenes carry the light. */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #101c2c radial-gradient(1200px 500px at 50% -80px, #1d3350 0%, #101c2c 60%);
+  color: #f3e9d2;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+}
+
+#stage {
+  position: relative;
+  max-width: 1252px;
+  margin: 0 auto;
+  padding: 10px 16px 8px;
+}
+
+/* ---------- top bar ---------- */
+
+#topbar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 2px 4px 8px;
+}
+
+#brand {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px;
+  letter-spacing: 0.4px;
+  color: #ffd98f;
+}
+
+#brand-mark { color: #ffb84d; }
+
+#brand-sub {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 13px;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: #9db8cc;
+  margin-left: 8px;
+}
+
+#score-box {
+  font-size: 15px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #9db8cc;
+}
+
+#score-box strong {
+  color: #ffd23f;
+  font-size: 20px;
+  margin-left: 6px;
+}
+
+/* ---------- heads-up display ---------- */
+
+#hud {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+  padding: 0 2px 10px;
+}
+
+.pill {
+  background: #1b2f47;
+  border: 1px solid #33506b;
+  border-radius: 999px;
+  padding: 6px 13px;
+  font-size: 14.5px;
+  color: #cfdde8;
+  white-space: nowrap;
+}
+
+.pill strong { color: #ffffff; }
+
+#hud-level {
+  font-family: Georgia, "Times New Roman", serif;
+  color: #ffd98f;
+  border-color: #6b5a2e;
+}
+
+#hud-left-pill strong { color: #ffb84d; font-size: 16px; }
+
+#timer-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 130px;
+  height: 30px;
+  background: #0b1624;
+  border: 1px solid #33506b;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+#timer-bar {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background: linear-gradient(90deg, #2e8f86, #7fc96b);
+  transition: width 0.25s linear;
+}
+
+#timer-bar.danger { background: linear-gradient(90deg, #c23b2e, #e2604d); }
+
+#hud-time {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+#hud-time.danger { color: #ffb3a7; }
+
+#hud button {
+  font: inherit;
+  font-size: 14.5px;
+  background: #274b63;
+  color: #f3e9d2;
+  border: 1px solid #4a7396;
+  border-radius: 999px;
+  padding: 6px 15px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#hud button:hover:not(:disabled) { background: #31597a; }
+#hud button:disabled { opacity: 0.45; cursor: default; }
+
+#btn-hint { border-color: #6b5a2e; background: #4a3d1e; }
+#btn-hint:hover:not(:disabled) { background: #5d4c26; }
+
+/* ---------- the two pictures ---------- */
+
+#panels {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.panel-card {
+  margin: 0;
+  background: #f3e9d2;
+  border-radius: 12px;
+  padding: 10px 10px 6px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5), inset 0 0 0 1px #d8c9a3;
+}
+
+.panel-card canvas {
+  display: block;
+  width: 580px;
+  height: 580px;
+  border-radius: 5px;
+  cursor: crosshair;
+  background: #22354d;
+}
+
+.panel-card figcaption {
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  letter-spacing: 2.6px;
+  text-transform: uppercase;
+  color: #6b5a36;
+  padding: 5px 0 3px;
+}
+
+#ticker {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%) translateY(6px);
+  max-width: 86%;
+  background: rgba(13, 24, 40, 0.88);
+  color: #ffe9b0;
+  border: 1px solid rgba(255, 184, 77, 0.5);
+  border-radius: 999px;
+  padding: 7px 18px;
+  font-size: 14.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+#ticker.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+#help {
+  text-align: center;
+  color: #7e97ad;
+  font-size: 13.5px;
+  padding: 8px 0 2px;
+}
+
+#help b { color: #cfdde8; }
+
+/* ---------- toast and overlay cards ---------- */
+
+#toast {
+  position: absolute;
+  top: 108px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: rgba(13, 24, 40, 0.9);
+  color: #ffd98f;
+  border: 1px solid rgba(255, 184, 77, 0.55);
+  border-radius: 10px;
+  padding: 10px 22px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 5;
+}
+
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+#overlay {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 15, 26, 0.62);
+  z-index: 10;
+}
+
+#overlay.show { display: flex; }
+
+#overlay .card {
+  background: #f7efdb;
+  color: #22354d;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  max-width: 560px;
+  width: calc(100% - 64px);
+  padding: 30px 38px 32px;
+  text-align: center;
+}
+
+#overlay .kicker {
+  margin: 0 0 6px;
+  font-size: 12.5px;
+  letter-spacing: 2.6px;
+  text-transform: uppercase;
+  color: #b0563a;
+}
+
+#overlay h1 {
+  margin: 0 0 10px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 42px;
+  color: #22354d;
+}
+
+#overlay h2 {
+  margin: 0 0 10px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px;
+  color: #22354d;
+}
+
+#overlay .lede {
+  margin: 0 0 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #44586b;
+}
+
+#overlay .rules {
+  text-align: left;
+  margin: 0 auto 18px;
+  max-width: 430px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #44586b;
+}
+
+#overlay .stats {
+  margin: 0 auto 18px;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  color: #44586b;
+}
+
+#overlay .stats td {
+  padding: 4px 8px;
+  border-bottom: 1px solid #e0d3ae;
+  white-space: nowrap;
+}
+
+#overlay button.big {
+  font: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  background: #e2604d;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 42px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(226, 96, 77, 0.45);
+}
+
+#overlay button.big:hover { background: #cf4f3c; }
+
+#overlay button.ghost {
+  font: inherit;
+  display: block;
+  margin: 12px auto 0;
+  background: none;
+  border: none;
+  color: #7a6248;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: underline;
+}

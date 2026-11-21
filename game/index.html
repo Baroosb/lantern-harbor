@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lantern Harbor — Spot the Difference</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="stage">
+  <header id="topbar">
+    <div id="brand"><span id="brand-mark">✦</span> Lantern Harbor <span id="brand-sub">spot the difference</span></div>
+    <div id="score-box">Score <strong id="hud-score">0</strong></div>
+  </header>
+
+  <div id="hud">
+    <div class="pill" id="hud-level">Level 1 of 3 · First Light</div>
+    <div class="pill">Found <strong id="hud-found">0 of 7</strong></div>
+    <div class="pill" id="hud-left-pill"><strong id="hud-left">7</strong>&nbsp;to go</div>
+    <div id="timer-wrap"><div id="timer-bar"></div><span id="hud-time">3:00</span></div>
+    <div class="pill">Mistakes <strong id="hud-mistakes">0</strong></div>
+    <button id="btn-hint" type="button">Hint (<span id="hud-hints">3</span>)</button>
+    <button id="btn-pause" type="button">Pause</button>
+  </div>
+
+  <main id="panels">
+    <figure class="panel-card">
+      <canvas id="panel-left" width="580" height="580"></canvas>
+      <figcaption>Picture A</figcaption>
+    </figure>
+    <figure class="panel-card">
+      <canvas id="panel-right" width="580" height="580"></canvas>
+      <figcaption>Picture B</figcaption>
+    </figure>
+    <div id="ticker"></div>
+  </main>
+
+  <footer id="help">Click a difference in either picture · <b>H</b> hint · <b>P</b> pause · a wrong click costs 5 seconds</footer>
+
+  <div id="toast"></div>
+  <div id="overlay"></div>
+</div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
